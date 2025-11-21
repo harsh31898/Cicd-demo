@@ -1,4 +1,4 @@
-FROM ubuntu:latest
-LABEL authors="harsh"
-
-ENTRYPOINT ["top", "-b"]
+FROM python:3.10-slim
+WORKDIR /app
+COPY . .
+CMD ["python","app.py"]

@@ -12,7 +12,7 @@ pipeline {
                 script
                 {
                 sh """
-                docker build -t demo-${env.BRANCH_NAME} .
+                docker build -t  cicd-demo:${env.BRANCH_NAME} .
                 """
                 }
             }
@@ -21,7 +21,7 @@ pipeline {
          steps{
             script{
             sh """
-               docker run --rm cicd-demo:${BRANCH_NAME}
+               docker run --rm cicd-demo:${env.BRANCH_NAME}
             """
             }
          }
