@@ -12,16 +12,17 @@ pipeline {
                 script
                 {
                 sh """
-                docker build -t  cicd-demo:${env.BRANCH_NAME} .
+                docker build -t  cicd-demo:${env.BUILD_NUMBER} .
                 """
                 }
-            }
+            } 
         }
-        stage('Docker Run'){
-         steps{
-            script{
+         stage('Deploy to Kubernetes') {
+            steps {
+                script {
             sh """
-               docker run --rm cicd-demo:${env.BRANCH_NAME}
+               sed -i 's/image_tag/${env.BUILD_NUMBER}/g' k8s/deployment.yaml
+               kubectl apply -f k8s/
             """
             }
          }
