@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
             sh """
-               sed -i 's/image_tag/${env.BUILD_NUMBER}/g' k8s/deployment.yaml
+               sed -i 's/image_tag/${env.BUILD_NUMBER}/g' k8s/Deployment.yaml
                kubectl apply -f k8s/
             """
             }
